@@ -1,0 +1,14 @@
+19. Create a servlet that prints WELCOME TO SERVLET WORLD using html's heading tag. 
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1>WELCOME TO SERVLET WORLD </h1>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+Q.10 Make a program that displays number of columns present in the given table.
+
+package com.practice.jdbc;
+import java.sql.*;
+import java.util.Scanner;
+
+public class CountCoulmns {
+
+	public static void main(String[] args)throws SQLException
+	
+	{
+
+		Connection connection = null;
+		 
+		  PreparedStatement ps = null;
+		 
+		  ResultSet rs = null;
+		  
+		  Scanner scanner = null;
+		
+		 try
+		 {
+			  scanner = new Scanner(System.in);
+			 
+			 Class.forName("com.mysql.cj.jdbc.Driver");
+			
+				
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc_20","root","root");
+				
+				String sql = "select count(*) FROM information_schema.columns  where table_schema = 'jdbc_20'"
+						+ "and  table_name = 'student'";
+				
+				ps = connection.prepareStatement(sql);
+
+				rs = ps.executeQuery();		
+				
+				while(rs.next())
+				{
+					System.out.println( "Number od columns in table are =  " +rs.getInt(1));
+					
+				}
+				
+			 
+			 
+		 }
+		 
+		 catch(Exception e)
+		 {
+			 System.out.println(e);
+		 }
+
+		  finally
+		  {
+			  connection.close();
+			  scanner.close();
+			  
+		  }
+
+
+
+	}
+
+}

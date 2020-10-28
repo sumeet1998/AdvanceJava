@@ -1,0 +1,62 @@
+Q.5 Create a program to display no. of student records present in the table.
+
+package com.practice.jdbc;
+import java.sql.*;
+
+public class RecordCount {
+
+	public static void main(String[] args) throws SQLException
+	{
+
+		Connection connection = null;
+		 
+		  PreparedStatement ps = null;
+		 
+		  ResultSet rs = null;
+		  
+		  int counter = 0;
+		
+		 try
+		 {
+			 
+			 Class.forName("com.mysql.cj.jdbc.Driver");
+				
+				connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc_20","root","root");
+				
+				String sql = "select * from student order by name Asc";
+				
+				ps = connection.prepareStatement(sql);
+				
+				rs= ps.executeQuery(sql);
+				
+				while(rs.next())
+				{
+					
+					System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getInt(3)+" "+rs.getString(4));
+					
+					counter = counter + 1;
+					
+				}
+				
+				System.out.println("\nNumber of record present are = "+ counter);
+				
+			 
+			 
+		 }
+		 
+		 catch(Exception e)
+		 {
+			 System.out.println(e);
+		 }
+
+		  finally
+		  {
+			  connection.close();
+			  
+		  }
+		
+
+
+	}
+
+}
